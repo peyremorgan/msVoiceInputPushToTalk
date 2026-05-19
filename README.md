@@ -9,7 +9,7 @@ Hold `F9` to activate your system's voice input (push-to-talk), release `F9` to 
 - AutoHotkey v2 (https://www.autohotkey.com/)
 
 **Installation**
-1. Install AutoHotkey v2 from the official site.
+1. Install AutoHotkey v2 from the [official site](https://www.autohotkey.com/).
 2. Place `msVoiceInputPushToTalk.ahk` (this repo) somewhere convenient.
 3. Double-click the `.ahk` file to run it. To run automatically at login, put a shortcut into your Startup folder (`shell:startup`).
 
