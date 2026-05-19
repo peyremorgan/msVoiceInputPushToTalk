@@ -10,6 +10,15 @@ GetVoiceAccessPixelColor()
 	return PixelGetColor(16, 16, "RGB")
 }
 
+DebugVoiceAccessState(action, color, shortCircuitReason := "")
+{
+	message := action " | pixel(16,16)=" Format("0x{:06X}", color)
+	if shortCircuitReason != ""
+		message .= " | short-circuit=" shortCircuitReason
+
+	OutputDebug message
+}
+
 F9::
 {
 	global pttKeyIsDown
@@ -20,8 +29,11 @@ F9::
 	color := GetVoiceAccessPixelColor()
 	if color = 0x005FBA
 	{
+		DebugVoiceAccessState("F9 down", color, "already-active-mic")
 		return
 	}
+
+	DebugVoiceAccessState("F9 down", color, "send-toggle")
 
 	Send "!+b"
 }
@@ -36,8 +48,11 @@ F9 up::
 	color := GetVoiceAccessPixelColor()
 	if color = 0xF2FAFD
 	{
+		DebugVoiceAccessState("F9 up", color, "already-muted")
 		return
 	}
+
+	DebugVoiceAccessState("F9 up", color, "send-toggle")
 
 	Send "!+b"
 }
