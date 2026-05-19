@@ -10,6 +10,18 @@ GetVoiceAccessPixelColor()
 	return PixelGetColor(16, 16, "RGB")
 }
 
+IsColorClose(color, targetColor, tolerance := 8)
+{
+	; Extract RGB components
+	r1 := (color >> 16) & 0xFF
+	g1 := (color >> 8) & 0xFF
+	b1 := color & 0xFF
+	r2 := (targetColor >> 16) & 0xFF
+	g2 := (targetColor >> 8) & 0xFF
+	b2 := targetColor & 0xFF
+	return Abs(r1 - r2) <= tolerance && Abs(g1 - g2) <= tolerance && Abs(b1 - b2) <= tolerance
+}
+
 DebugVoiceAccessState(action, color, shortCircuitReason := "")
 {
 	message := action " | pixel(16,16)=" Format("0x{:06X}", color)
@@ -27,7 +39,7 @@ F9::
 
 	pttKeyIsDown := true
 	color := GetVoiceAccessPixelColor()
-	if color = 0x005FBA
+	if IsColorClose(color, 0x005FBA)
 	{
 		DebugVoiceAccessState("F9 down", color, "already-active-mic")
 		return
@@ -46,7 +58,7 @@ F9 up::
 
 	pttKeyIsDown := false
 	color := GetVoiceAccessPixelColor()
-	if color = 0xF2FAFD
+	if IsColorClose(color, 0xF2FAFD)
 	{
 		DebugVoiceAccessState("F9 up", color, "already-muted")
 		return
