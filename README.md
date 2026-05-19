@@ -35,7 +35,7 @@ to:
 Send "#h"
 ```
 
-**How it works (brief)**
+**How it works**
 - The script uses a boolean `pttKeyIsDown` to avoid duplicate sends. On `F9` down it sets the flag and sends the shortcut; on `F9` up it clears the flag and sends the shortcut again, effectively toggling voice listening while the key is held.
 
 **Contributing**
