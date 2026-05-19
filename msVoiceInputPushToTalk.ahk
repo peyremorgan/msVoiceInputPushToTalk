@@ -10,16 +10,21 @@ GetVoiceAccessPixelColor()
 	return PixelGetColor(16, 16, "RGB")
 }
 
-IsColorClose(color, targetColor, tolerance := 8)
+IsColorClose(color, targetColor, tolerance := 25)
 {
-	; Extract RGB components
+	; Redmean perceptual distance in sRGB.
 	r1 := (color >> 16) & 0xFF
 	g1 := (color >> 8) & 0xFF
 	b1 := color & 0xFF
 	r2 := (targetColor >> 16) & 0xFF
 	g2 := (targetColor >> 8) & 0xFF
 	b2 := targetColor & 0xFF
-	return Abs(r1 - r2) <= tolerance && Abs(g1 - g2) <= tolerance && Abs(b1 - b2) <= tolerance
+	rMean := (r1 + r2) / 2
+	dR := r1 - r2
+	dG := g1 - g2
+	dB := b1 - b2
+	distance := Sqrt((2 + rMean / 256) * dR * dR + 4 * dG * dG + (2 + (255 - rMean) / 256) * dB * dB)
+	return distance <= tolerance
 }
 
 DebugVoiceAccessState(action, color, shortCircuitReason := "")
