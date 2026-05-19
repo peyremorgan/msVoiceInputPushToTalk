@@ -1,6 +1,6 @@
 # Windows Voice Input Push-to-Talk script
 
-Short AutoHotkey v2 script to make `F9` act as a push-to-talk (PTT) button for Windows voice input.
+Short AutoHotkey v2 script to make `F9` act as a push-to-talk (PTT) button for Windows Voice Input.
 
 Hold `F9` to activate your system's voice input (push-to-talk), release `F9` to stop. Useful when using Windows Voice Typing or Voice Access and you need/prefer a physical PTT key.
 
