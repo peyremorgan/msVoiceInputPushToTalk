@@ -17,6 +17,8 @@ Hold `F9` to activate your system's voice input (push-to-talk), release `F9` to 
 - Hold `F9` to send the configured shortcut to Windows voice input; release `F9` to send it again.
 - By default the script sends `Alt+Shift+B` (AutoHotkey: `Send "!+b"`). If your voice-input shortcut differs (for example, Windows Voice Typing default is `Win+H`), edit the `Send` line in `msVoiceInputPushToTalk.ahk`.
 
+- Note: The Windows Voice Input overlay (for example, Voice Typing or Voice Access) must be open/running for the push-to-talk shortcut to be received. The script simply sends the configured shortcut; Windows will only act on it when its voice input UI is active.
+
 Modifier shorthand in AutoHotkey:
 - `!` = Alt
 - `+` = Shift
